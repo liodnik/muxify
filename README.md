@@ -1,21 +1,17 @@
 # Muxify
 
-**TODO: Add description**
-
-## Installation
-
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `muxify` to your list of dependencies in `mix.exs`:
-
+Install dependencies with
 ```elixir
-def deps do
-  [
-    {:muxify, "~> 0.1.0"}
-  ]
-end
+mix deps.get
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/muxify>.
+Run tests with
+```elixir
+mix test
+```
 
+Today it is necessary to have ffmpeg installed on your machine.
+
+TODO:
+1. Place everything into docker.
+2. Use C ffmpeg library instead of installing it separately.
