@@ -1,6 +1,6 @@
 defmodule Muxify do
   @moduledoc """
-  Module implements POST and GET request to receive HLS file and send back MP4 file.
+  Module implements POST request to receive HLS file and send back MP4 file.
   """
   use Plug.Router
 
@@ -14,8 +14,8 @@ defmodule Muxify do
     # Convert the HLS file to MP4
     mp4_file = muxify(hls_file)
 
-    # Post back the MP4 file
-    HTTPoison.post!("http://example.com/post-mp4-file", mp4_file)
+    # Send back the MP4 file
+    send_resp(conn, 200, mp4_file)
   end
 
   defp get_req_param(conn, param_name) do
@@ -31,9 +31,10 @@ defmodule Muxify do
 
   def muxify(hls_file) do
     # Convert the HLS file to MP4
-    mp4_file = System.cmd("ffmpeg", ["-i", hls_file, "-acodec", "copy", "-vcodec", "copy", "output.mp4"])
+    mp4_file = "output.mp4"
+    System.cmd("/usr/local/bin/ffmpeg", ["-i", hls_file, "-acodec", "copy", "-vcodec", "copy", mp4_file])
 
     # Return the MP4 file
-    mp4_file
+    File.read!(mp4_file)
   end
 end
